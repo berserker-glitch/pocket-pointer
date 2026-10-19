@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101613">
+    <title>Pocket Pointer · Remote</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css?v=10">
+    <script src="/remote.js?v=10" defer></script>
+  </head>
+  <body class="remote-page">
+    <main class="remote-shell">
+      <div class="remote-alert" id="remote-alert" hidden></div>
+
+      <nav class="mode-switch" aria-label="Controller mode">
+        <button class="mode-tab is-active" type="button" data-view="mouse-view" aria-selected="true">Mouse</button>
+        <button class="mode-tab" type="button" data-view="keyboard-view" aria-selected="false">Keyboard</button>
+        <button class="settings-button" id="settings-open" type="button" aria-label="Open control settings">Settings</button>
+      </nav>
+
+      <section class="controller-view" id="mouse-view" aria-label="Mouse controls">
+        <div class="pad-caption"><strong>Touchpad</strong><span>Drag to move · two fingers to scroll</span></div>
+        <div class="trackpad" id="trackpad" role="application" aria-label="Touchpad. Drag to move, tap to click, or use two fingers to scroll." tabindex="0">
+          <div class="pad-center"><span>Drag here to move</span></div>
+          <span class="trackpad-live" id="trackpad-live" aria-live="polite"></span>
+        </div>
+        <div class="click-row">
+          <button class="click-button" data-mouse-button="left" type="button">Left click</button>
+          <button class="click-button" data-mouse-button="right" type="button">Right click</button>
+        </div>
+      </section>
+
+      <section class="controller-view keyboard-view" id="keyboard-view" aria-label="Keyboard controls" hidden>
+        <div class="keyboard-title">
+          <div><h1>Keyboard</h1><p>Tap to type on your PC</p></div>
+          <button class="keyboard-more-button" id="keyboard-tools-toggle" type="button" aria-expanded="false" aria-controls="keyboard-tools">More keys</button>
+        </div>
+        <div class="typing-preview">
+          <div class="typing-preview-header">
+            <span class="typing-preview-label">Preview</span>
+            <span class="typing-preview-feedback" id="keyboard-feedback">Ready</span>
+            <button class="typing-preview-clear" id="clear-preview" type="button">Clear</button>
+          </div>
+          <div class="typed-preview-text is-empty" id="typed-preview" aria-label="Text entered with the custom keyboard" aria-live="off">
+            <span id="typed-preview-before"></span><span class="typing-caret" aria-hidden="true"></span><span id="typed-preview-after"></span>
+          </div>
+        </div>
+        <div class="keyboard-tools" id="keyboard-tools" hidden>
+          <div class="key-row key-row-tools">
+            <button class="keycap keycap-tool" id="caps-lock" type="button" data-key="CapsLock">Caps</button>
+            <button class="keycap keycap-tool" type="button" data-key="Escape">Esc</button>
+            <button class="keycap keycap-tool" type="button" data-key="Tab">Tab</button>
+            <button class="keycap keycap-tool" type="button" data-key="Insert">Ins</button>
+            <button class="keycap keycap-tool" type="button" data-key="Delete">Del</button>
+            <button class="keycap keycap-tool" type="button" data-key="Home">Home</button>
+            <button class="keycap keycap-tool" type="button" data-key="End">End</button>
+            <button class="keycap keycap-tool" type="button" data-key="PageUp">PgUp</button>
+            <button class="keycap keycap-tool" type="button" data-key="PageDown">PgDn</button>
+          </div>
+          <div class="key-row key-row-tools">
+            <button class="keycap keycap-tool" type="button" data-key="ArrowLeft">←</button>
+            <button class="keycap keycap-tool" type="button" data-key="ArrowDown">↓</button>
+            <button class="keycap keycap-tool" type="button" data-key="ArrowUp">↑</button>
+            <button class="keycap keycap-tool" type="button" data-key="ArrowRight">→</button>
+            <button class="keycap keycap-tool" type="button" data-key="F1">F1</button>
+            <button class="keycap keycap-tool" type="button" data-key="F2">F2</button>
+            <button class="keycap keycap-tool" type="button" data-key="F3">F3</button>
+            <button class="keycap keycap-tool" type="button" data-key="F4">F4</button>
+            <button class="keycap keycap-tool" type="button" data-key="F5">F5</button>
+            <button class="keycap keycap-tool" type="button" data-key="F6">F6</button>
+            <button class="keycap keycap-tool" type="button" data-key="F7">F7</button>
+            <button class="keycap keycap-tool" type="button" data-key="F8">F8</button>
+            <button class="keycap keycap-tool" type="button" data-key="F9">F9</button>
+            <button class="keycap keycap-tool" type="button" data-key="F10">F10</button>
+            <button class="keycap keycap-tool" type="button" data-key="F11">F11</button>
+            <button class="keycap keycap-tool" type="button" data-key="F12">F12</button>
+          </div>
+        </div>
+        <div class="virtual-keyboard" aria-label="Custom on-screen keyboard">
+          <div class="key-layout" id="letters-layout">
+            <div class="key-row key-row-letters">
+              <button class="keycap keycap-letter" type="button" data-char="q" data-shift-char="Q" data-shortcut-key="q">q</button><button class="keycap keycap-letter" type="button" data-char="w" data-shift-char="W" data-shortcut-key="w">w</button><button class="keycap keycap-letter" type="button" data-char="e" data-shift-char="E" data-shortcut-key="e">e</button><button class="keycap keycap-letter" type="button" data-char="r" data-shift-char="R" data-shortcut-key="r">r</button><button class="keycap keycap-letter" type="button" data-char="t" data-shift-char="T" data-shortcut-key="t">t</button><button class="keycap keycap-letter" type="button" data-char="y" data-shift-char="Y" data-shortcut-key="y">y</button><button class="keycap keycap-letter" type="button" data-char="u" data-shift-char="U" data-shortcut-key="u">u</button><button class="keycap keycap-letter" type="button" data-char="i" data-shift-char="I" data-shortcut-key="i">i</button><button class="keycap keycap-letter" type="button" data-char="o" data-shift-char="O" data-shortcut-key="o">o</button><button class="keycap keycap-letter" type="button" data-char="p" data-shift-char="P" data-shortcut-key="p">p</button>
+            </div>
+            <div class="key-row key-row-letters key-row-home">
+              <button class="keycap keycap-letter" type="button" data-char="a" data-shift-char="A" data-shortcut-key="a">a</button><button class="keycap keycap-letter" type="button" data-char="s" data-shift-char="S" data-shortcut-key="s">s</button><button class="keycap keycap-letter" type="button" data-char="d" data-shift-char="D" data-shortcut-key="d">d</button><button class="keycap keycap-letter" type="button" data-char="f" data-shift-char="F" data-shortcut-key="f">f</button><button class="keycap keycap-letter" type="button" data-char="g" data-shift-char="G" data-shortcut-key="g">g</button><button class="keycap keycap-letter" type="button" data-char="h" data-shift-char="H" data-shortcut-key="h">h</button><button class="keycap keycap-letter" type="button" data-char="j" data-shift-char="J" data-shortcut-key="j">j</button><button class="keycap keycap-letter" type="button" data-char="k" data-shift-char="K" data-shortcut-key="k">k</button><button class="keycap keycap-letter" type="button" data-char="l" data-shift-char="L" data-shortcut-key="l">l</button>
+            </div>
+            <div class="key-row key-row-letters">
+              <button class="keycap keycap-side" id="shift-key" type="button" data-modifier="Shift" aria-label="Shift">⇧</button><button class="keycap keycap-letter" type="button" data-char="z" data-shift-char="Z" data-shortcut-key="z">z</button><button class="keycap keycap-letter" type="button" data-char="x" data-shift-char="X" data-shortcut-key="x">x</button><button class="keycap keycap-letter" type="button" data-char="c" data-shift-char="C" data-shortcut-key="c">c</button><button class="keycap keycap-letter" type="button" data-char="v" data-shift-char="V" data-shortcut-key="v">v</button><button class="keycap keycap-letter" type="button" data-char="b" data-shift-char="B" data-shortcut-key="b">b</button><button class="keycap keycap-letter" type="button" data-char="n" data-shift-char="N" data-shortcut-key="n">n</button><button class="keycap keycap-letter" type="button" data-char="m" data-shift-char="M" data-shortcut-key="m">m</button><button class="keycap keycap-side" type="button" data-key="Backspace" data-repeat="true" aria-label="Backspace">⌫</button>
+            </div>
+            <div class="key-row key-row-bottom">
+              <button class="keycap keycap-side keycap-layout-toggle" id="keyboard-layout-toggle" type="button" aria-label="Switch to numbers and symbols">123</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Control">Ctrl</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Meta">Win</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Alt">Alt</button>
+              <button class="keycap keycap-space" type="button" data-char=" " data-shortcut-key="Space" aria-label="Space">space</button>
+              <button class="keycap keycap-enter" type="button" data-key="Enter">↵</button>
+            </div>
+          </div>
+          <div class="key-layout" id="symbols-layout" hidden>
+            <div class="key-row key-row-letters">
+              <button class="keycap keycap-letter" type="button" data-char="1" data-shift-char="!" data-shortcut-key="1">1</button><button class="keycap keycap-letter" type="button" data-char="2" data-shift-char="@" data-shortcut-key="2">2</button><button class="keycap keycap-letter" type="button" data-char="3" data-shift-char="#" data-shortcut-key="3">3</button><button class="keycap keycap-letter" type="button" data-char="4" data-shift-char="$" data-shortcut-key="4">4</button><button class="keycap keycap-letter" type="button" data-char="5" data-shift-char="%" data-shortcut-key="5">5</button><button class="keycap keycap-letter" type="button" data-char="6" data-shift-char="^" data-shortcut-key="6">6</button><button class="keycap keycap-letter" type="button" data-char="7" data-shift-char="&amp;" data-shortcut-key="7">7</button><button class="keycap keycap-letter" type="button" data-char="8" data-shift-char="*" data-shortcut-key="8">8</button><button class="keycap keycap-letter" type="button" data-char="9" data-shift-char="(" data-shortcut-key="9">9</button><button class="keycap keycap-letter" type="button" data-char="0" data-shift-char=")" data-shortcut-key="0">0</button>
+            </div>
+            <div class="key-row key-row-letters">
+              <button class="keycap keycap-letter" type="button" data-char="-" data-shift-char="_" data-shortcut-key="-">-</button><button class="keycap keycap-letter" type="button" data-char="/" data-shift-char="?" data-shortcut-key="/">/</button><button class="keycap keycap-letter" type="button" data-char=":" data-shift-char=";" data-shortcut-key=";" data-shortcut-shift="true">:</button><button class="keycap keycap-letter" type="button" data-char=";" data-shift-char=":" data-shortcut-key=";">;</button><button class="keycap keycap-letter" type="button" data-char="(" data-shortcut-key="9" data-shortcut-shift="true">(</button><button class="keycap keycap-letter" type="button" data-char=")" data-shortcut-key="0" data-shortcut-shift="true">)</button><button class="keycap keycap-letter" type="button" data-char="$" data-shortcut-key="4" data-shortcut-shift="true">$</button><button class="keycap keycap-letter" type="button" data-char="&amp;" data-shortcut-key="7" data-shortcut-shift="true">&amp;</button><button class="keycap keycap-letter" type="button" data-char="@" data-shortcut-key="2" data-shortcut-shift="true">@</button><button class="keycap keycap-letter" type="button" data-char="&quot;" data-shortcut-key="&#39;" data-shortcut-shift="true">&quot;</button>
+            </div>
+            <div class="key-row key-row-letters">
+              <button class="keycap keycap-side" type="button" data-char="=" data-shift-char="+" data-shortcut-key="=">=</button><button class="keycap keycap-letter" type="button" data-char="[" data-shift-char="{" data-shortcut-key="[">[</button><button class="keycap keycap-letter" type="button" data-char="]" data-shift-char="}" data-shortcut-key="]">]</button><button class="keycap keycap-letter" type="button" data-char="&#92;" data-shift-char="|" data-shortcut-key="&#92;">&#92;</button><button class="keycap keycap-letter" type="button" data-char="&#96;" data-shift-char="~" data-shortcut-key="&#96;">&#96;</button><button class="keycap keycap-letter" type="button" data-char="," data-shift-char="&lt;" data-shortcut-key=",">,</button><button class="keycap keycap-letter" type="button" data-char="." data-shift-char="&gt;" data-shortcut-key=".">.</button><button class="keycap keycap-letter" type="button" data-char="!" data-shortcut-key="1" data-shortcut-shift="true">!</button><button class="keycap keycap-letter" type="button" data-char="&#39;" data-shift-char="&quot;" data-shortcut-key="&#39;">'</button><button class="keycap keycap-side" type="button" data-key="Backspace" data-repeat="true" aria-label="Backspace">⌫</button>
+            </div>
+            <div class="key-row key-row-bottom">
+              <button class="keycap keycap-side keycap-layout-toggle" id="keyboard-layout-toggle-symbols" type="button">ABC</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Control">Ctrl</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Meta">Win</button>
+              <button class="keycap keycap-modifier" type="button" data-modifier="Alt">Alt</button>
+              <button class="keycap keycap-space" type="button" data-char=" " data-shortcut-key="Space" aria-label="Space">space</button>
+              <button class="keycap keycap-enter" type="button" data-key="Enter">↵</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="settings-backdrop" id="settings-backdrop" hidden>
+        <section class="settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+          <header class="settings-sheet-header"><h2 id="settings-title">Controls</h2><button class="sheet-close" id="settings-close" type="button" aria-label="Close settings">×</button></header>
+          <label class="setting-row setting-master"><span><strong>Remote access</strong><small>Pause all input</small></span><span class="switch"><input type="checkbox" data-setting="enabled" checked><span class="switch-track"></span></span></label>
+          <label class="setting-row"><span><strong>Mouse</strong><small>Move and click</small></span><span class="switch"><input type="checkbox" data-setting="mouse" checked><span class="switch-track"></span></span></label>
+          <div class="setting-row sensitivity-row"><span><strong>Mouse sensitivity</strong><small>Pointer speed</small></span><span class="sensitivity-control"><input id="mouse-sensitivity" type="range" min="50" max="300" step="10" value="170" aria-label="Mouse sensitivity"><output id="mouse-sensitivity-value">1.7×</output></span></div>
+          <label class="setting-row"><span><strong>Keyboard</strong><small>Use the custom on-screen keys</small></span><span class="switch"><input type="checkbox" data-setting="keyboard" checked><span class="switch-track"></span></span></label>
+          <label class="setting-row"><span><strong>Scrolling</strong><small>Two-finger gesture</small></span><span class="switch"><input type="checkbox" data-setting="scroll" checked><span class="switch-track"></span></span></label>
+          <label class="setting-row"><span><strong>Click buttons</strong><small>Left and right click</small></span><span class="switch"><input type="checkbox" data-setting="click" checked><span class="switch-track"></span></span></label>
+          <label class="setting-row"><span><strong>Tap to click</strong><small>Tap the pad for left click</small></span><span class="switch"><input type="checkbox" data-setting="tapClick" checked><span class="switch-track"></span></span></label>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

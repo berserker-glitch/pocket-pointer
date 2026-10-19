@@ -1,0 +1,23 @@
+services:
+  pocket-pointer:
+    build: .
+    container_name: pocket-pointer
+    restart: unless-stopped
+    init: true
+    environment:
+      PORT: 8765
+      PAIRING_PIN: ${PAIRING_PIN:?Run start.ps1 to create the local pairing code}
+      HOST_TOKEN: ${HOST_TOKEN:?Run start.ps1 to create the host bridge key}
+    ports:
+      - "8765:8765"
+    volumes:
+      - pocket_pointer_data:/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8765/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 4s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  pocket_pointer_data:

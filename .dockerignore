@@ -1,0 +1,6 @@
+.env
+.bridge.pid
+phone-link.txt
+data
+README.md
+*.ps1

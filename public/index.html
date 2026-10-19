@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101613">
+    <title>Pocket Pointer · PC connection</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body id="top" class="dashboard-page">
+    <div class="dashboard-frame">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Pocket Pointer home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M9 8.5c0-2 1.6-3.5 3.5-3.5h15C29.4 5 31 6.6 31 8.5v23c0 2-1.6 3.5-3.5 3.5h-15C10.6 35 9 33.4 9 31.5v-23Z"/><path d="M16 28h8M20 10v9m0 0-4-4m4 4 4-4"/></svg></span>
+          <span class="brand-name">pocket<span>pointer</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="local-mark"><span class="local-dot"></span> LOCAL NETWORK</span>
+          <a class="text-link" href="/remote">Open controller <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-row">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> PC connection</p>
+            <h1>Your desktop,<br><em>in your hands.</em></h1>
+            <p class="hero-description">Turn your phone into a wireless mouse and keyboard. Keep both devices on the same Wi-Fi, then scan the code.</p>
+          </div>
+          <div class="hero-stamp" aria-label="Private local connection">
+            <span class="stamp-spark">✳</span>
+            <span>PRIVATE<br>BY DESIGN</span>
+            <span class="stamp-caption">No cloud. Same Wi-Fi.</span>
+          </div>
+        </section>
+
+        <section class="dashboard-grid" aria-label="Connection and controls">
+          <article class="connection-card panel-card">
+            <div class="card-heading">
+              <div><p class="eyebrow">01 / PAIR YOUR PHONE</p><h2>Scan to connect</h2></div>
+              <span class="connection-indicator" id="host-indicator"><span></span><b id="host-label">Bridge offline</b></span>
+            </div>
+            <div class="pair-content">
+              <div class="qr-frame" id="qr-frame">
+                <div class="qr-placeholder" id="qr-placeholder"><span class="qr-cross">+</span><span>Waiting for<br>network address</span></div>
+                <img id="qr-code" alt="QR code for phone pairing" hidden>
+                <div class="qr-corner corner-tl"></div><div class="qr-corner corner-tr"></div><div class="qr-corner corner-bl"></div><div class="qr-corner corner-br"></div>
+              </div>
+              <div class="pair-details">
+                <p class="micro-label">YOUR PHONE LINK</p>
+                <div class="address-picker" id="address-picker"><span class="address-value" id="address-value">Waiting for the Windows bridge…</span><button class="icon-button" id="copy-link" type="button" aria-label="Copy phone link" title="Copy link" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="6" width="9" height="11" rx="1.5"></rect><path d="M12 6V4.5A1.5 1.5 0 0 0 10.5 3h-6A1.5 1.5 0 0 0 3 4.5v8A1.5 1.5 0 0 0 4.5 14H7"></path></svg></button></div>
+                <div class="address-options" id="address-options" aria-label="Available PC network addresses"></div>
+                <label class="micro-label pin-label" for="pair-code">PAIRING CODE</label>
+                <div class="pin-box"><code id="pair-code">••••••••</code><span class="pin-lock" aria-hidden="true">⌑</span></div>
+                <p class="pair-hint" id="pair-hint">Start the bridge to create your local phone link.</p>
+                <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="network-strip"><span class="network-icon" aria-hidden="true">⌁</span><span id="network-copy">Use the same Wi-Fi network on your PC and phone.</span></div>
+          </article>
+
+          <article class="control-card panel-card">
+            <div class="card-heading control-heading">
+              <div><p class="eyebrow">02 / ACCESS</p><h2>What can move?</h2></div>
+              <span class="control-count"><span id="enabled-count">5</span><small>ACTIVE</small></span>
+            </div>
+            <div class="master-control">
+              <div><span class="control-name">Remote access</span><span class="control-caption">Pause every input at once</span></div>
+              <label class="switch switch-large"><input type="checkbox" data-setting="enabled" checked><span class="switch-track"></span><span class="sr-only">Remote access</span></label>
+            </div>
+            <div class="toggle-list">
+              <div class="toggle-row"><span class="toggle-symbol symbol-pointer" aria-hidden="true">↖</span><div class="toggle-copy"><span class="control-name">Mouse</span><span class="control-caption">Move the pointer</span></div><label class="switch"><input type="checkbox" data-setting="mouse" checked><span class="switch-track"></span><span class="sr-only">Mouse</span></label></div>
+              <div class="toggle-row"><span class="toggle-symbol symbol-key" aria-hidden="true">⌘</span><div class="toggle-copy"><span class="control-name">Keyboard</span><span class="control-caption">Type and send shortcuts</span></div><label class="switch"><input type="checkbox" data-setting="keyboard" checked><span class="switch-track"></span><span class="sr-only">Keyboard</span></label></div>
+              <div class="toggle-row"><span class="toggle-symbol symbol-scroll" aria-hidden="true">↕</span><div class="toggle-copy"><span class="control-name">Scrolling</span><span class="control-caption">Use two fingers on the pad</span></div><label class="switch"><input type="checkbox" data-setting="scroll" checked><span class="switch-track"></span><span class="sr-only">Scrolling</span></label></div>
+              <div class="toggle-row"><span class="toggle-symbol symbol-click" aria-hidden="true">●</span><div class="toggle-copy"><span class="control-name">Mouse buttons</span><span class="control-caption">Left and right click</span></div><label class="switch"><input type="checkbox" data-setting="click" checked><span class="switch-track"></span><span class="sr-only">Mouse buttons</span></label></div>
+              <div class="toggle-row"><span class="toggle-symbol symbol-tap" aria-hidden="true">⌖</span><div class="toggle-copy"><span class="control-name">Tap to click</span><span class="control-caption">Tap the pad for a left click</span></div><label class="switch"><input type="checkbox" data-setting="tapClick" checked><span class="switch-track"></span><span class="sr-only">Tap to click</span></label></div>
+            </div>
+            <div class="control-foot"><span class="foot-lock" aria-hidden="true">◈</span> Changes apply to every connected phone.</div>
+          </article>
+        </section>
+
+        <section class="setup-row" aria-label="How to connect">
+          <div class="setup-intro"><p class="eyebrow">IN TWO MINUTES</p><h2>Ready when<br>you are.</h2></div>
+          <div class="setup-step"><span class="step-number">01</span><span class="step-icon" aria-hidden="true">▣</span><h3>Same network</h3><p>Connect your phone and PC to the same Wi-Fi.</p></div>
+          <div class="setup-step"><span class="step-number">02</span><span class="step-icon" aria-hidden="true">▦</span><h3>Scan the code</h3><p>Open your phone camera and scan the code above.</p></div>
+          <div class="setup-step"><span class="step-number">03</span><span class="step-icon" aria-hidden="true">⌁</span><h3>Move and type</h3><p>Use the touchpad and keyboard in your browser.</p></div>
+        </section>
+      </main>
+
+      <footer class="page-footer"><span>POCKET POINTER <span class="footer-sep">/</span> WINDOWS + DOCKER</span><span>Local traffic stays on your network.</span><a href="#top" class="footer-top" aria-label="Back to top">↑</a></footer>
+    </div>
+  </body>
+</html>
