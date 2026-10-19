@@ -13,7 +13,9 @@ The first start creates `.env` with a random pairing code and a private bridge k
 
 ## Keep it running
 
-Docker uses `restart: unless-stopped`, so the web app returns when Docker starts. To start the app and Windows bridge when you sign in, enable Docker Desktop's sign-in startup option, then run `./install-autostart.ps1` once. The bridge runs in the background and reconnects if Docker restarts.
+Docker uses `restart: unless-stopped`, so the web app returns when Docker starts. To start the app and Windows bridge when you sign in, enable Docker Desktop's sign-in startup option, then run `./install-autostart.ps1` once in PowerShell. The task runs in the background under your Windows account without administrator privileges. If Docker is still starting, Windows retries once per minute for up to 20 minutes. You can close the PowerShell window after setup; the bridge process is hidden and reconnects if Docker restarts.
+
+The bridge starts after you sign in to Windows. It does not run before sign-in, so it can send input only in your signed-in desktop session.
 
 Run `./stop.ps1` to stop Docker and the bridge. Run `./uninstall-autostart.ps1` to remove the Windows sign-in task.
 
